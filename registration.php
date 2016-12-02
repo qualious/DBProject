@@ -30,7 +30,7 @@
         if($result){
             echo "Username $userName already exists, please try again!";
         }else{
-            $query2 = "INSERT INTO User (username, password) VALUES ($userName, $password1)"
+            $query2 = "INSERT INTO User (username, password) VALUES ($userName, $password1)";
             mysql_query($query2);
             echo "User sucesfully created.";
         }
