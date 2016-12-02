@@ -27,7 +27,7 @@
 
         $query = "SELECT * from User where username=$userName"
         $result = mysql_query($query);
-        if(!$result){
+        if($result){
             echo "Username $userName already exists, please try again!";
         }else{
             $query2 = "INSERT into User (username, password) VALUES ($userName, $password1)"
