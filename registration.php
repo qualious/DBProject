@@ -9,11 +9,11 @@
         $uname = "root";
         $password = "password";
 
-        $dbhandle = mysql_connect($servername, $uname, $password) 
+        $dbhandle = mysqli_connect($servername, $uname, $password) 
             or die("Unable to connect to MySQL");
         echo "Connected to MySQL<br>";
         
-        $user_db = mysql_select_db("User",$dbhandle) 
+        $user_db = mysqli_select_db("User",$dbhandle) 
             or die("Could not select user");
 
 
