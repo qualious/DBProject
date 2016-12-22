@@ -5,7 +5,7 @@
     <body>
 
     <?php
-        $conn = new mysqli("localhost", "root", "", "oldrapper");
+        $conn = new mysqli("localhost", "root", "oldrapper", "project");
 
         if($conn->connect_error){
             die("Connection failed: " . $conn->connect_error);
@@ -22,15 +22,17 @@
             //         window.location = "index.html";
             //     },2000);
             // </script>
-            header('Location: index.html');
+            header('index.html');
 			exit;
 
         }
-        else
-            echo "OK";
 
-        $query = "SELECT * from User where username=$userName";
-        if($conn->query($query) == TRUE){
+        $query = $conn->prepare("SELECT * from consumer where user_name=?");
+        $query->bind_param("s", $userName);
+        $query->execute();
+        $query->store_result();
+        $countRows = $query->num_rows;
+        if($countRows>=1){
             //if username exists, send user to index.html
             echo "Username $userName already exists, please try again!";
             // <script>
@@ -38,11 +40,12 @@
             //         window.location = "index.html";
             //     },3000);
             // </script>
-            header('Location: index.html');
+            header('refresh:2; url=index.html');
 			exit;
         }else{
-            $query2 = "INSERT into User (username, password) VALUES ($userName, $password1)";
-            if($conn->query($query2) === TRUE){
+            $query2 = $conn->prepare("INSERT into consumer (user_name, user_password) VALUES (?, ?)");
+            $query2->bind_param("ss", $userName, $password1);
+            if($query2->execute()){
                 echo "Registration complete";
                 //if registration is complete, send user to logged.html
                 // <script>
@@ -50,7 +53,7 @@
                 //         window.location = "logged.html";
                 //     },2000);
                 // </script>
-                header('Location: logged.html');
+                header('refresh:2; url=logged.html');
 				exit;
 
             }
@@ -62,7 +65,7 @@
                 //         window.location = "index.html";
                 //     },2000);
                 // </script>
-                header('Location: index.html');
+                header('refresh:2; url=index.html');
 				exit;
 
             }
