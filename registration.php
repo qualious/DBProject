@@ -5,15 +5,12 @@
     <body>
 
     <?php
-        $conn = new mysqli("localhost", "root", "oldrapper", "project");
-
-        if($conn->connect_error){
-            die("Connection failed: " . $conn->connect_error);
-        }
-
+    	require_once('../Project/mysqli_connect.php');
         $userName = $_POST['username'];
         $password1 = $_POST['password1'];
         $password2= $_POST['password2'];
+    	session_start();
+    	$_SESSION['username'] = $userName;
         if($password1 != $password2){
             echo "Passwords don't match!";
             header('refresh:2; url=index.html');
@@ -50,6 +47,7 @@
             }
         }
     $conn->close();
+    header("Location:reserve.php?userName=userName");
     ?>
 
     </body>

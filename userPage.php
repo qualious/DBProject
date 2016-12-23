@@ -1,13 +1,14 @@
 <html>
     <head>
-        <title>Showing events based on filters...</title>
+        <title>Your reservations...</title>
     </head>
     <body>
+    <h1>Your Reservations</h1>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 		<table class="table table-responsive">
 		<thread>
 			<tr>
-				<th>Reserve</th>
+				<th>Cancel</th>
 				<th>Title</th>
 				<th>Date</th>
 				<th>Showroom</th>
@@ -17,30 +18,18 @@
 			</tr>
 	    </thead>
 	    <tbody>
-	    <form action="reserve.php" method="post">
+	    <form action="cancel_res.php" method="post">
 
 		<?php 
     		require_once('../Project/mysqli_connect.php');
-	        $day1 = $_POST['day1'];
-	        $month1 = $_POST['month1'];
-	        $year1 = $_POST['year1'];
-			$string1 = $year1 . "-" . $month1 . "-" . $day1;
-
-	        $day2 = $_POST['day2'];
-	        $month2 = $_POST['month2'];
-	        $year2 = $_POST['year2'];
-			$string2 = $year2 . "-" . $month2 . "-" . $day2;
-
-	        $city = $_POST['city'];
-			$activity_type = $_POST['type'];
+    		session_start();
+    		$id = $_SESSION['activity_id'];
 
 			$query = "	SELECT activity_id, title,event_date, activity.showroom, capacity,fullness,activity_type,city_name
 						FROM activity
 						INNER JOIN showroom ON activity.showroom = showroom.showroom
 						INNER JOIN city ON showroom.city_id = city.city_id 
-						WHERE event_date BETWEEN '$string1-00:00:00' AND  '$string2-23:59:59'
-						AND city.city_id = '$city'
-						AND activity.activity_type = '$activity_type'
+						WHERE activity.activity_id = '$id'
 					 ";
 
 			$result = @mysqli_query($conn,$query);
@@ -92,7 +81,7 @@
             $conn->close();
         ?>
 		<tr>
-			<td colspan="2" align="center"><input type="submit" value="Submit"/></td>
+			<td colspan="2" align="center"><input type="submit" value="Cancel"/></td>
 		</tr>
 	    </form>
 	    </tbody>
