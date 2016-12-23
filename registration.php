@@ -16,13 +16,7 @@
         $password2= $_POST['password2'];
         if($password1 != $password2){
             echo "Passwords don't match!";
-            //if passwords don't match, send user to index.html
-            // <script>
-            //     window.setTimeout(function () {
-            //         window.location = "index.html";
-            //     },2000);
-            // </script>
-            header('index.html');
+            header('refresh:2; url=index.html');
 			exit;
 
         }
@@ -35,11 +29,6 @@
         if($countRows>=1){
             //if username exists, send user to index.html
             echo "Username $userName already exists, please try again!";
-            // <script>
-            //     window.setTimeout(function () {
-            //         window.location = "index.html";
-            //     },3000);
-            // </script>
             header('refresh:2; url=index.html');
 			exit;
         }else{
@@ -48,11 +37,6 @@
             if($query2->execute()){
                 echo "Registration complete";
                 //if registration is complete, send user to logged.html
-                // <script>
-                //     window.setTimeout(function () {
-                //         window.location = "logged.html";
-                //     },2000);
-                // </script>
                 header('refresh:2; url=logged.html');
 				exit;
 
@@ -60,11 +44,6 @@
             else{
                 echo "Connection error " . $conn->error;
                 //if connection error occurs, send user to index.html
-                // <script>
-                //     window.setTimeout(function () {
-                //         window.location = "index.html";
-                //     },2000);
-                // </script>
                 header('refresh:2; url=index.html');
 				exit;
 
