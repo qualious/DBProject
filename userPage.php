@@ -23,13 +23,13 @@
 		<?php 
     		require_once('../Project/mysqli_connect.php');
     		session_start();
-    		$id = $_SESSION['activity_id'];
-
-			$query = "	SELECT activity_id, title,event_date, activity.showroom, capacity,fullness,activity_type,city_name
+   			$userName = $_SESSION['username'];
+			$query = "	SELECT activity.activity_id, title,event_date, activity.showroom, capacity,fullness,activity_type,city_name
 						FROM activity
 						INNER JOIN showroom ON activity.showroom = showroom.showroom
 						INNER JOIN city ON showroom.city_id = city.city_id 
-						WHERE activity.activity_id = '$id'
+						INNER JOIN reserve ON activity.activity_id = reserve.activity_id
+						WHERE reserve.user_name = '$userName';
 					 ";
 
 			$result = @mysqli_query($conn,$query);
@@ -84,6 +84,14 @@
 			<td colspan="2" align="center"><input type="submit" value="Cancel"/></td>
 		</tr>
 	    </form>
+	    <form action="logged.html">
+	    	<input type="submit" value="Search for events!" />
+		</form>
+
+	    <form action="index.html">
+	    	<input type="submit" value="Quit!" />
+		</form>
+
 	    </tbody>
 	</table>
 

@@ -5,18 +5,24 @@
     <body>
 
     <?php
-    	require_once('../Project/mysqli_connect.php');
         $userName = $_POST['username'];
         $password1 = $_POST['password1'];
         $password2= $_POST['password2'];
-    	session_start();
-    	$_SESSION['username'] = $userName;
         if($password1 != $password2){
             echo "Passwords don't match!";
             header('refresh:2; url=index.html');
-			exit;
+			exit();
 
         }
+        if($userName == "" || $password == ""){
+            echo "<h2>Username or password can't be blank!</h2>";
+            exit();
+        }
+
+
+    	session_start();
+    	$_SESSION['username'] = $userName;
+    	require_once('../Project/mysqli_connect.php');
 
         $query = $conn->prepare("SELECT * from consumer where user_name=?");
         $query->bind_param("s", $userName);

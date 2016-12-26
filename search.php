@@ -3,6 +3,33 @@
         <title>Showing events based on filters...</title>
     </head>
     <body>
+    	<?php 
+			$day1 = $_POST['day1'];
+	        $month1 = $_POST['month1'];
+	        $year1 = $_POST['year1'];
+			$string1 = $year1 . "-" . $month1 . "-" . $day1;
+
+	        $day2 = $_POST['day2'];
+	        $month2 = $_POST['month2'];
+	        $year2 = $_POST['year2'];
+			$string2 = $year2 . "-" . $month2 . "-" . $day2;
+
+			if($string2 < $string1){
+				//date check
+				echo "<h2>First date can't be higher than the second date, please try again!</h2>";
+				header('refresh:2; url=logged.html');
+				exit();
+			}
+
+	        $city = $_POST['city'];
+	        if($city == 0){
+	        	echo "<h2>Don't forget to select the location!</h2>";
+				header('refresh:2; url=logged.html');
+				exit();
+	        }
+			$activity_type = $_POST['type'];
+
+    	 ?>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 		<table class="table table-responsive">
 		<thread>
@@ -20,20 +47,8 @@
 	    <form action="reserve.php" method="post">
 
 		<?php 
+	        
     		require_once('../Project/mysqli_connect.php');
-	        $day1 = $_POST['day1'];
-	        $month1 = $_POST['month1'];
-	        $year1 = $_POST['year1'];
-			$string1 = $year1 . "-" . $month1 . "-" . $day1;
-
-	        $day2 = $_POST['day2'];
-	        $month2 = $_POST['month2'];
-	        $year2 = $_POST['year2'];
-			$string2 = $year2 . "-" . $month2 . "-" . $day2;
-
-	        $city = $_POST['city'];
-			$activity_type = $_POST['type'];
-
 			$query = "	SELECT activity_id, title,event_date, activity.showroom, capacity,fullness,activity_type,city_name
 						FROM activity
 						INNER JOIN showroom ON activity.showroom = showroom.showroom
@@ -92,7 +107,7 @@
             $conn->close();
         ?>
 		<tr>
-			<td colspan="2" align="center"><input type="submit" value="Submit"/></td>
+			<td colspan="2" align="center"><input type="submit" value="Reserve"/></td>
 		</tr>
 	    </form>
 	    </tbody>
