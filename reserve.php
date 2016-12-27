@@ -30,7 +30,9 @@
 			$resultReserve = mysqli_query($conn,$sqlReserve);
 			$resultUpdate = mysqli_query($conn,$sqlUpdate);
 			if (!$resultUpdate || !$resultReserve) {
-		    	printf("\n\nError in update and reserve: %s\n", mysqli_error($conn));
+		    	//printf("\n\nError in update and reserve: %s\n", mysqli_error($conn));
+	    		echo "You already have a reservation in the selected activity, please update or cancel it in your user page!"
+	    		header('refresh:2; url=userPage.php');
 	    		exit();
 			}
 			else{
