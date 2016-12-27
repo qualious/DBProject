@@ -10,9 +10,12 @@
 		session_start();
 
     	$id = $_POST['optradio'];		//returns the activity_id
-
     	$_SESSION['activity_id'] = $id;
         $userName = $_SESSION['username'];
+
+
+    	$res_count = $_POST['res_count'];
+    	$_SESSION['res_count'] = $res_count;
 
      	$query = "SELECT * FROM activity WHERE fullness = capacity AND activity_id = '$id'";
      	$result = mysqli_query($conn,$query);
@@ -22,12 +25,12 @@
 			exit;
 		}
 		else{
-			$sqlUpdate = "UPDATE activity SET fullness = fullness + 1 WHERE activity_id = '$id'";
-			$sqlReserve = "INSERT INTO `reserve` (`user_name`,`activity_id`, `res_count`) VALUES ('$userName', '$id','1')";
+			$sqlUpdate = "UPDATE activity SET fullness = fullness + '$res_count' WHERE activity_id = '$id'";
+			$sqlReserve = "INSERT INTO `reserve` (`user_name`,`activity_id`, `res_count`) VALUES ('$userName', '$id','$res_count')";
 			$resultReserve = mysqli_query($conn,$sqlReserve);
 			$resultUpdate = mysqli_query($conn,$sqlUpdate);
 			if (!$resultUpdate || !$resultReserve) {
-		    	printf("\n\nError: %s\n", mysqli_error($conn));
+		    	printf("\n\nError in update and reserve: %s\n", mysqli_error($conn));
 	    		exit();
 			}
 			else{

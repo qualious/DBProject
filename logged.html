@@ -14,16 +14,34 @@
 	<tr>
 		What type of activity do you want to search?</br>
 		<select name ="type" id="type">
+			<option value="%">------</option>
 			<option value="Cinema">Cinema</option>
 			<option value="Theatre">Theatre</option>
 			<option value="Opera">Opera</option>
 			<option value="Concert">Concert</option>
 			<option value="Fair">Fair</option>
 			<option value="Hackathon">Hackathon</option>
+			<option value="Stand-up">Stand-up</option>
 		</select>
 		</br>
 		</br>
 	</tr>
+	<tr>
+		Which showroom?</br>
+		<select name ="showroom" id="showroom">
+			<option value="%">------</option>
+			<option value="Cemil Topuzlu AcikhavaSahnesi">Cemil Topuzlu Acikhava Sahnesi</option>
+			<option value="Istinye Park">Istinye Park</option>
+			<option value="Zorlu Center">Zorlu Center</option>
+			<option value="Istanbul Park">Istanbul Park</option>
+			<option value="Harbiye Açıkhava Tiyatrosu">Harbiye Açıkhava Tiyatrosu</option>
+			<option value="Istanbul Modern">Istanbul Modern</option>
+			<option value="Sakip Sabanci Muzesi">Sakip Sabanci Muzesi</option>
+		</select>
+		</br>
+		</br>
+	</tr>
+	
 	<tr class="highlight"></tr>
 	<tr>
 		<script type="text/javascript">
@@ -40,6 +58,7 @@
 		From&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspTo</br>
 		<select name="day1" id="day">
+			<option value="%">------</option>
 			<option value="1">1</option>
 			<option value="2">2</option>
 			<option value="3">3</option>
@@ -74,6 +93,7 @@
 		</select>
 
 		<select name="month1" id="month">
+			<option value="%">------</option>
 			<option value="1">January</option>
 			<option value="2">February</option>
 			<option value="3">March</option>
@@ -89,6 +109,7 @@
 		</select>
 
 		<select name="year1" id="year">
+			<option value="%">------</option>
 			<option value="2016">2016</option>
 			<option value="2017">2017</option>
 			<option value="2018">2018</option>
@@ -107,6 +128,7 @@
 		</script>
 
 		<select name="day2" id="day">
+			<option value="%">------</option>
 			<option value="1">1</option>
 			<option value="2">2</option>
 			<option value="3">3</option>
@@ -141,6 +163,7 @@
 		</select>
 
 		<select name="month2" id="month">
+			<option value="%">------</option>
 			<option value="1">January</option>
 			<option value="2">February</option>
 			<option value="3">March</option>
@@ -156,6 +179,7 @@
 		</select>
 
 		<select name="year2" id="year" align="right">
+			<option value="%">------</option>
 			<option value="2016">2016</option>
 			<option value="2017">2017</option>
 			<option value="2018">2018</option>
@@ -167,7 +191,7 @@
 	<tr>
 		Location?</br>
 		<select name="city" id="city">
-		    <option value="0">------</option>
+		    <option value="%">------</option>
 		    <option value="1">Adana</option>
 		    <option value="2">Adıyaman</option>
 		    <option value="3">Afyonkarahisar</option>
@@ -250,8 +274,10 @@
 		    <option value="80">Osmaniye</option>
 		    <option value="81">Düzce</option>
 		</select>
+
+	</br></br></br><a style="font-size:80%;">Don't select a filter if you don't want to filter it.</a>
 	<tr>
-	<td colspan="2" align="center"><input type="submit" value="Submit"/></td>
+	<td colspan="2" align="center"><input type="submit" value="Search"/></td>
 	</tr>
 
 	</table>

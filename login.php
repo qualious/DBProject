@@ -9,7 +9,7 @@
         $password = $_POST['password'];
     	session_start();
     	$_SESSION['username'] = $userName;
-        if($userName == "" || $password == ""){
+        if($userName == '' || $password == ''){
             echo "<h2>Username or password can't be blank!</h2>";
             exit();
         }

@@ -14,7 +14,7 @@
 			exit();
 
         }
-        if($userName == "" || $password == ""){
+        if($userName == '' || $password1 == '' || $password2 == ''){
             echo "<h2>Username or password can't be blank!</h2>";
             exit();
         }

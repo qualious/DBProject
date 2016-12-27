@@ -8,7 +8,8 @@
 		<table class="table table-responsive">
 		<thread>
 			<tr>
-				<th>Cancel</th>
+				<th>Select</th>
+				<th>Quantity</th>
 				<th>Title</th>
 				<th>Date</th>
 				<th>Showroom</th>
@@ -24,7 +25,7 @@
     		require_once('../Project/mysqli_connect.php');
     		session_start();
    			$userName = $_SESSION['username'];
-			$query = "	SELECT activity.activity_id, title,event_date, activity.showroom, capacity,fullness,activity_type,city_name
+			$query = "	SELECT activity.activity_id, res_count, title,event_date, activity.showroom, capacity,fullness,activity_type,city_name
 						FROM activity
 						INNER JOIN showroom ON activity.showroom = showroom.showroom
 						INNER JOIN city ON showroom.city_id = city.city_id 
@@ -44,6 +45,9 @@
 	        	<div class="radio">
 	            	<label><input type="radio" id='regular' name="optradio" value=<?php echo $row['activity_id']?>> </label>
 	            </div>
+	        </td>
+	        <td>
+	        	<input type="text" name="res_count_update" size="5" value=<?php echo $row['res_count']?>></td>
 	        </td>
 	        <td>
 	        <div class="radiotext">
@@ -81,7 +85,8 @@
             $conn->close();
         ?>
 		<tr>
-			<td colspan="2" align="center"><input type="submit" value="Cancel"/></td>
+			<td colspan="1" align="left"><input type="submit" name="btnCancel" value="Cancel"/></td>
+			<td colspan="1" align="left"><input type="submit" name="btnUpdate" value="Update"/></td>
 		</tr>
 	    </form>
 	    <form action="logged.html">
