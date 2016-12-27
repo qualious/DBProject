@@ -20,7 +20,7 @@
         $query->store_result();
         $countRows = $query->num_rows;
         if($countRows>=1){
-            //if username exists, send user to index.html
+            //if username exists, send user to userPage.html
             echo "Sucesfully logged in, redirecting to userPage!";
             header('refresh:2; url=userPage.php');
 			exit;

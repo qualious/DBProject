@@ -4,9 +4,19 @@
     </head>
     <body>
     <?php 
+
+/*
+ILK IKI KUTUCUKTAKI DEGER DONDURULUYOR ID VE RES COUNT UPDATE'E
+*/
+
+   		if(!isset($_POST['optradio'])){
+   			echo "Please don't forget to select the activity that you want to update or cancel!";
+			header('refresh:2; url=userPage.php');
+			exit;
+   		}
     	require_once('../Project/mysqli_connect.php');
     	session_start();
-   		$id = $_SESSION['activity_id'];
+    	$id = $_POST['optradio'];
    		$userName = $_SESSION['username'];
    		$res_count = $_SESSION['res_count'];
      	$query = "SELECT * FROM activity WHERE activity_id = '$id'";
@@ -33,7 +43,11 @@
 				}
 			}
 			else{
-   				$res_count_update = $_POST['res_count_update'];
+				//check the capacity
+   				$res_count_update = $_POST['res_count_update'];	//5
+
+		     	// echo $res_count_update."<br>";
+		     	// echo $_POST['x'][1] . "<br>";
 				$sqlUpdate = "UPDATE activity SET fullness = fullness - ('$res_count' - '$res_count_update') WHERE activity_id = '$id'";
 				$sqlReserve = "UPDATE `reserve` SET res_count = '$res_count_update' WHERE user_name = '$userName' AND activity_id = '$id'";
 				$resultUpdate = mysqli_query($conn,$sqlUpdate);

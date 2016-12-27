@@ -47,7 +47,9 @@
 	            </div>
 	        </td>
 	        <td>
-	        	<input type="text" name="res_count_update" size="5" value=<?php echo $row['res_count']?>></td>
+	        <div class="radiotext">
+	            <label for='regular'><?php echo $row['res_count']?></label>
+	        </div>
 	        </td>
 	        <td>
 	        <div class="radiotext">
@@ -84,13 +86,19 @@
             }
             $conn->close();
         ?>
-		<tr>
-			<td colspan="1" align="left"><input type="submit" name="btnCancel" value="Cancel"/></td>
-			<td colspan="1" align="left"><input type="submit" name="btnUpdate" value="Update"/></td>
+	    <td>
+	    	New Quantity?</br>
+			<input type="text" name="res_count_update" size="5" /></td>
+	    </td>
+	    <tr>
+		<td>
+			<input type="submit" name="btnUpdate" value="Update the reservation"/>&#160&#160
+			<input type="submit" name="btnCancel" value="Cancel the reservation"/>
+		</td>
 		</tr>
 	    </form>
 	    <form action="logged.html">
-	    	<input type="submit" value="Search for events!" />
+	    	<input type="submit" value="Search for events!" />&#160&#160
 		</form>
 
 	    <form action="index.html">
