@@ -9,7 +9,7 @@
     	require_once('../Project/mysqli_connect.php');
 		session_start();
 
-    	$id = $_POST['optradio'];		//returns the activity_id
+    	$id = $_POST['optradio'];		
     	$_SESSION['activity_id'] = $id;
         $userName = $_SESSION['username'];
 

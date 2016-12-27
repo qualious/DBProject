@@ -4,11 +4,6 @@
     </head>
     <body>
     <?php 
-
-/*
-ILK IKI KUTUCUKTAKI DEGER DONDURULUYOR ID VE RES COUNT UPDATE'E
-*/
-
    		if(!isset($_POST['optradio'])){
    			echo "Please don't forget to select the activity that you want to update or cancel!";
 			header('refresh:2; url=userPage.php');
@@ -43,11 +38,16 @@ ILK IKI KUTUCUKTAKI DEGER DONDURULUYOR ID VE RES COUNT UPDATE'E
 				}
 			}
 			else{
-				//check the capacity
-   				$res_count_update = $_POST['res_count_update'];	//5
-
-		     	// echo $res_count_update."<br>";
-		     	// echo $_POST['x'][1] . "<br>";
+				$res_count_update = $_POST['res_count_update'];
+   				//check the capacity
+   				$newFullness = "fullness - ('$res_count' - '$res_count_update')";
+   				$sqlCheck = "SELECT * FROM activity WHERE newFullness > capacity";
+   				$resultCheck = mysqli_query($conn,$sqlCheck);
+   				if (!$resultCheck) {
+				   	echo "I'm sorry, but it seems like you entered more than the capacity can handle. Please give another quantitiy!";
+					header('refresh:2; url=userPage.php');
+					exit;
+				}
 				$sqlUpdate = "UPDATE activity SET fullness = fullness - ('$res_count' - '$res_count_update') WHERE activity_id = '$id'";
 				$sqlReserve = "UPDATE `reserve` SET res_count = '$res_count_update' WHERE user_name = '$userName' AND activity_id = '$id'";
 				$resultUpdate = mysqli_query($conn,$sqlUpdate);
