@@ -2,7 +2,7 @@
 
 // Defined as constants so that they can't be changed
 DEFINE ('DB_USER', 'root');
-DEFINE ('DB_PASSWORD', 'oldrapper');
+DEFINE ('DB_PASSWORD', 'xxxxxx');
 DEFINE ('DB_HOST', 'localhost');
 DEFINE ('DB_NAME', 'project');
 // $dbc will contain a resource link to the database
